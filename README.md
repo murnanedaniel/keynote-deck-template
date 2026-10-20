@@ -18,10 +18,10 @@ npm run dev            # http://localhost:3000
 
 Or copy the folder by hand (`cp -r templates/keynote-deck ~/talks/my-talk`, then delete any `node_modules`, `.next`, `out` and `shots` that came along). If you later move the template to its own repository, tick "Template repository" in its settings and use GitHub's **Use this template** button instead.
 
-On homebox, serve the dev deck on the tailnet so it can be opened from another device:
+To open the dev deck from another device on your private network, bind it to that interface:
 
 ```bash
-npx next dev --hostname 100.118.51.124 --port <free port>
+npx next dev --hostname <your-private-ip> --port <free port>
 ```
 
 Then edit, in this order:
@@ -43,7 +43,7 @@ npm run shoot            # screenshots every scene and step, writes shots/report
 
 `shots/` gets one PNG per scene per step at 1280x720 and 1920x1080, and `report.md` lists FAIL and warning items (word count, font size, overlaps, overflow, contrast, placeholder text, dead steps, numbers without a source). Exit code is 1 if anything fails. Then open the screenshots and go through `skills/keynote-slides/CHECKLIST.md`.
 
-On homebox, headless Chromium needs local libraries and the cached headless shell:
+If headless Chromium is missing system libraries (no sudo), point it at a local copy:
 
 ```bash
 export LD_LIBRARY_PATH=$HOME/.local/chromelibs/root/usr/lib/x86_64-linux-gnu
