@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f6f1e7;
+  --ink: #141414;
+  --canvas: #f6f1e7;
+  --grid: rgba(20, 20, 20, 0.055);
+  --accent: #0369a1;
+  --accent-warm: #b45309;
+  /* Text tokens. Muted text must still pass 4.5:1 on its surface. */
+  --fg: #141414;
+  --muted: #57534e;
+  --faint: #6b665f;
+
+  /* Type scale, measured at a 1280x720 viewport (min) up to 1920x1080 (max).
+     Nothing a viewer must read goes below --t-source. */
+  --t-display: clamp(72px, 9vw, 176px);   /* the one big number */
+  --t-title: clamp(30px, 3vw, 58px);    /* title slide only */
+  --t-headline: clamp(30px, 3vw, 58px);   /* the scene's claim */
+  --t-body: clamp(20px, 1.7vw, 32px);     /* captions, quote lines, card text */
+  --t-label: clamp(13px, 1vw, 19px);      /* axis titles, card labels */
+  --t-source: clamp(12px, 0.9vw, 17px);   /* sources, footnotes */
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-canvas: var(--canvas);
+  --color-accent: var(--accent);
+  --color-accent-warm: var(--accent-warm);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-serif);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  overscroll-behavior: none;
+}
+
+.canvas-grid {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.paper-texture {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,0.015) 1px, transparent 1px);
+  background-position: 0 0, 12px 12px;
+  background-size: 24px 24px;
+}
+
+.vignette::after {
+  content: "";
+  z-index: 0;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.55) 100%);
+}
+
+.theme-light {
+  --canvas: #f6f1e7;
+  --grid: rgba(20, 20, 20, 0.055);
+  --accent: #0369a1;
+  --accent-warm: #b45309;
+  --fg: #141414;
+  --muted: #57534e;
+  --faint: #6b665f;
+  color: #141414;
+}
+
+.theme-light .paper-grid {
+  background-image:
+    linear-gradient(to right, rgba(20,20,20,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20,20,20,0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.vignette > * { z-index: 1; } /* text sits above the vignette, never under it */
+
+.theme-light .vignette::after {
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(120,100,60,0.14) 100%);
+}
+
+.ink-shadow {
+  box-shadow: 0 14px 40px -14px rgba(20,20,20,0.25), 0 0 0 1px rgba(20,20,20,0.08);
+}
+
+/* Hide scrollbars on auto-scrolled regions (terminal feed, etc). */
+.scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- scene kit (see src/components/kit) ---- */
+.t-display { font-family: var(--font-serif), Georgia, serif; font-style: italic; font-size: var(--t-display); line-height: 0.95; letter-spacing: -0.01em; }
+.t-title { font-style: italic; font-family: var(--font-serif), Georgia, serif; font-size: var(--t-title); line-height: 1.05; }
+.t-headline { font-family: var(--font-serif), Georgia, serif; font-style: italic; font-size: var(--t-headline); line-height: 1.15; text-wrap: balance; }
+.t-body { font-size: var(--t-body); line-height: 1.35; }
+.t-label { font-family: var(--font-geist-mono), monospace; font-size: var(--t-label); letter-spacing: 0.14em; text-transform: uppercase; }
+.t-source { font-family: var(--font-geist-mono), monospace; font-size: var(--t-source); color: var(--faint); }
+.text-fg { color: var(--fg); }
+.text-muted { color: var(--muted); }
+.text-faint { color: var(--faint); }
