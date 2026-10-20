@@ -6,7 +6,7 @@
 //   node scripts/shoot.mjs --only chart,diagram           # a subset of scenes
 //
 // Env: CHROMIUM_PATH=/path/to/chrome-headless-shell if Playwright's own
-// browser is not installed (on homebox also set LD_LIBRARY_PATH, see README).
+// browser is not installed (you may also need LD_LIBRARY_PATH, see README).
 // Writes shots/<WxH>/NN-<id>-s<step>.png and shots/report.md. Exit code 1 if
 // any check FAILs.
 
