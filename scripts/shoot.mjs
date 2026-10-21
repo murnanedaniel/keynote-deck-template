@@ -24,8 +24,8 @@ const only = opt("only", "") ? opt("only").split(",") : null;
 
 // Budgets. Change them here, not per scene: a scene that needs more words
 // needs splitting.
-const MAX_WORDS = 40;        // visible words on the final step, sources excluded
-const WARN_WORDS = 30;
+const MAX_WORDS = 80;        // visible words on the final step, sources excluded
+const WARN_WORDS = 60;
 const MIN_FONT_PX = 12;      // at 1280x720; sources may sit at the minimum
 const MIN_BODY_PX = 18;      // anything that is not a label or source
 const MIN_CONTRAST = 4.5;
